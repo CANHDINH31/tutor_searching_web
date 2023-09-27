@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Sidebar from "./scenes/global/Sidebar";
-import Form from "./scenes/form";
+import CreateUser from "./scenes/create-user";
 import FAQ from "./scenes/faq";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
@@ -13,7 +13,6 @@ import Users from "./scenes/users";
 function App() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
-
   const [cookies, setCookie] = useCookies(["admin"]);
 
   return (
@@ -30,7 +29,7 @@ function App() {
             <main className="content">
               <Routes>
                 <Route index path="/" element={<Users />} />
-                <Route path="/form" element={<Form />} />
+                <Route path="/create-user" element={<CreateUser />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/calendar" element={<Calendar />} />
               </Routes>

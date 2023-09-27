@@ -1,11 +1,12 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import Header from "../../components/layout/Header";
 import { useState } from "react";
 import { useEffect } from "react";
 import { getAllUser } from "../../libs/api";
-import { userColumns } from "../../components/users/usersColumn";
+import { userColumns } from "../../components/scenes/users/usersColumn";
 import TableWrapper from "../../components/common/TableWrapper";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
 const Users = () => {
   const [data, setData] = useState([]);
@@ -27,6 +28,14 @@ const Users = () => {
   return (
     <Box m="20px">
       <Header title="USERS" subtitle="Danh sách users" />
+      <Box display={"flex"} justifyContent={"flex-end"}>
+        <Button variant="contained" color="info" href="/create-user">
+          <Box display={"flex"} alignItems={"center"} gap={1}>
+            <AddCircleOutlineOutlinedIcon />
+            <Typography>Thêm mới user</Typography>
+          </Box>
+        </Button>
+      </Box>
       <TableWrapper>
         <DataGrid
           checkboxSelection

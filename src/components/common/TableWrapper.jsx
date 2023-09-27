@@ -7,7 +7,7 @@ const TableWrapper = ({ children }) => {
   const colors = tokens(theme.palette.mode);
   return (
     <Box
-      m="40px 0 0 0"
+      m="10px 0 0 0"
       height="70vh"
       sx={{
         "& .MuiDataGrid-root": {
