@@ -18,7 +18,7 @@ const Dashboard = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="THỐNG KÊ " subtitle="Chào mừng bạn đến với hệ thống" />
+        <Header title="DASHBOARD " subtitle="Chào mừng bạn đến với dashboard" />
       </Box>
 
       <Box

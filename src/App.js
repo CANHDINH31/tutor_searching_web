@@ -17,6 +17,7 @@ import { ColorModeContext, useMode } from "./theme";
 import Calendar from "./scenes/calendar/calendar";
 import Login from "./scenes/login/login";
 import { useCookies } from "react-cookie";
+import Users from "./scenes/users";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -38,6 +39,7 @@ function App() {
             <main className="content">
               <Routes>
                 <Route path="/" element={<Dashboard />} />
+                <Route path="/users" element={<Users />} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/contacts" element={<Contacts />} />
                 <Route path="/invoices" element={<Invoices />} />

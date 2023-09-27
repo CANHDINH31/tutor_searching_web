@@ -12,8 +12,8 @@ import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import CoronavirusOutlinedIcon from "@mui/icons-material/CoronavirusOutlined";
 import BookmarksOutlinedIcon from "@mui/icons-material/BookmarksOutlined";
 import EventNoteOutlinedIcon from "@mui/icons-material/EventNoteOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import AttachmentOutlinedIcon from "@mui/icons-material/AttachmentOutlined";
 import { useCookies } from "react-cookie";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -87,7 +87,7 @@ const Sidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINIS
+                  TUTOR SEARCHING
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -101,9 +101,12 @@ const Sidebar = () => {
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt="profile-user"
-                  width="100px"
-                  height="100px"
-                  src={cookies.admin.avatar}
+                  width="150px"
+                  height="150px"
+                  src={
+                    cookies.admin.avatar ||
+                    "https://knowledgeone.ca/wp-content/uploads/2020/08/kids-learning.jpg"
+                  }
                   style={{
                     objectFit: "cover",
                     cursor: "pointer",
@@ -118,7 +121,7 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Windows
+                  ADMIN
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
                   {cookies.admin.name}
@@ -132,6 +135,13 @@ const Sidebar = () => {
               title="Tổng quát"
               to="/"
               icon={<HomeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Quản lý User"
+              to="/users"
+              icon={<PersonOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

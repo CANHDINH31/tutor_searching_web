@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -11,6 +13,7 @@ root.render(
     <CookiesProvider>
       <BrowserRouter>
         <App />
+        <ToastContainer />
       </BrowserRouter>
     </CookiesProvider>
   </React.StrictMode>

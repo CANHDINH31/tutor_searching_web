@@ -30,14 +30,14 @@ const Form = () => {
   const [multipleFiles, setMultipleFiles] = useState("");
   const [multipleProgress, setMultipleProgress] = useState(0);
   const mulitpleFileOptions = {
-    onUploadProgress: progressEvent => {
+    onUploadProgress: (progressEvent) => {
       const { loaded, total } = progressEvent;
       const percentage = Math.floor(((loaded / 1000) * 100) / (total / 1000));
       setMultipleProgress(percentage);
     },
   };
 
-  const MultipleFileChange = e => {
+  const MultipleFileChange = (e) => {
     setMultipleFiles(e.target.files);
     setMultipleProgress(0);
   };
@@ -122,7 +122,7 @@ const Form = () => {
                     fullWidth
                     type="file"
                     onBlur={handleBlur}
-                    onChange={e => MultipleFileChange(e)}
+                    onChange={(e) => MultipleFileChange(e)}
                     value={values.address2}
                     name="address2"
                     error={!!touched.address2 && !!errors.address2}

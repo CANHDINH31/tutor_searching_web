@@ -10,8 +10,9 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { login } from "../../data/api";
 import { useCookies } from "react-cookie";
+import { login } from "../../libs/api";
+import { toast } from "react-toastify";
 
 function Copyright(props) {
   return (
@@ -44,9 +45,16 @@ export default function Login() {
     };
     try {
       const res = await login(param);
-      setCookie("admin", res);
+      const data = res?.data?.data;
+
+      if (data?.role === 3) {
+        toast.warn("Đăng nhập thành công");
+        setCookie("admin", data);
+      } else {
+        toast.warn("Bạn không phải là admin");
+      }
     } catch (err) {
-      console.log(err);
+      toast.error(err?.response?.data?.message);
     }
   };
 
