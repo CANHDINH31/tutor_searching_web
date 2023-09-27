@@ -4,16 +4,10 @@ import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
-import CoronavirusOutlinedIcon from "@mui/icons-material/CoronavirusOutlined";
-import BookmarksOutlinedIcon from "@mui/icons-material/BookmarksOutlined";
 import EventNoteOutlinedIcon from "@mui/icons-material/EventNoteOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useCookies } from "react-cookie";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -132,45 +126,9 @@ const Sidebar = () => {
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
-              title="Tổng quát"
-              to="/"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
               title="Quản lý User"
-              to="/users"
+              to="/"
               icon={<PersonOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Danh sách file"
-              to="/invoices"
-              icon={<ReceiptOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Upload file"
-              to="/form"
-              icon={<FileUploadOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Quét thư mục"
-              to="/scan-folder"
-              icon={<DriveFolderUploadOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Báo cáo"
-              to="/team"
-              icon={<BookmarksOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -178,13 +136,6 @@ const Sidebar = () => {
               title="Thời gian biểu"
               to="/calendar"
               icon={<EventNoteOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Giới thiệu"
-              to="/faq"
-              icon={<CoronavirusOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
