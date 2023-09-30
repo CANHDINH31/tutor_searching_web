@@ -5,23 +5,51 @@ import {
   TextField,
   FormControlLabel,
   Radio,
-  FormLabel,
 } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/layout/Header";
+import { register } from "../../libs/api/auth";
+import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { getInfoUser } from "../../libs/api/user";
 
-const CreateUser = () => {
+const ChangeInfo = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-  const handleFormSubmit = (values) => {
-    console.log(values);
+  const [initialValues, setInitialValues] = useState({
+    name: "",
+    phone: "",
+    gender: null,
+    date_of_birth: "",
+  });
+
+  const handleFormSubmit = async (values) => {
+    await register({
+      ...values,
+      gender: Number(values.gender),
+    });
+    navigate("/");
   };
 
+  useEffect(() => {
+    const getInfo = async (id) => {
+      const res = await getInfoUser(id);
+      setInitialValues({
+        name: res?.data?.name,
+        gender: Number(res?.data?.gender),
+        phone: res?.data?.phone,
+        date_of_birth: res?.data?.date_of_birth,
+      });
+    };
+    getInfo(id);
+  }, [id]);
   return (
     <Box m="20px">
-      <Header title="CREATE USER" subtitle="Create a New User" />
+      <Header title="UPDATE USER" subtitle="Update Info User" />
 
       <Formik
         onSubmit={handleFormSubmit}
@@ -62,44 +90,6 @@ const CreateUser = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Username"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.username}
-                name="username"
-                error={!!touched.username && !!errors.username}
-                helperText={touched.username && errors.username}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Email"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.email}
-                name="email"
-                error={!!touched.email && !!errors.email}
-                helperText={touched.email && errors.email}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="password"
-                label="Password"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.password}
-                name="password"
-                error={!!touched.password && !!errors.password}
-                helperText={touched.password && errors.password}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
                 label="Phone"
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -112,6 +102,7 @@ const CreateUser = () => {
               <TextField
                 fullWidth
                 variant="filled"
+                type="text"
                 label="Birthday"
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -121,34 +112,29 @@ const CreateUser = () => {
                 helperText={touched.date_of_birth && errors.date_of_birth}
                 sx={{ gridColumn: "span 2" }}
               />
-              <RadioGroup row>
+
+              <RadioGroup
+                row
+                aria-label="gender"
+                name="gender"
+                value={values.gender}
+                onChange={handleChange}
+              >
                 <FormControlLabel
-                  value="female"
-                  control={<Radio color="success" />}
-                  label="Female"
-                />
-                <FormControlLabel
-                  value="male"
+                  value={Number(1)}
                   control={<Radio color="success" />}
                   label="Male"
                 />
-              </RadioGroup>
-              <RadioGroup row>
                 <FormControlLabel
-                  value="female"
+                  value={Number(2)}
                   control={<Radio color="success" />}
-                  label="Student"
-                />
-                <FormControlLabel
-                  value="male"
-                  control={<Radio color="success" />}
-                  label="Tutor"
+                  label="Female"
                 />
               </RadioGroup>
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
-                Create New User
+                Update User
               </Button>
             </Box>
           </form>
@@ -158,27 +144,8 @@ const CreateUser = () => {
   );
 };
 
-const phoneRegExp =
-  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
-
 const checkoutSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
-  contact: yup
-    .string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .required("required"),
-  address1: yup.string().required("required"),
-  address2: yup.string().required("required"),
+  name: yup.string().required("Không được để trống"),
 });
-const initialValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  contact: "",
-  address1: "",
-  address2: "",
-};
 
-export default CreateUser;
+export default ChangeInfo;

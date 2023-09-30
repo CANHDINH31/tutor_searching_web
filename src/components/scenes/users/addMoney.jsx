@@ -7,11 +7,12 @@ import {
   Dialog,
   DialogTitle,
   IconButton,
+  TextField,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { styled } from "@mui/material/styles";
 
-const ConfirmDelete = ({ open, handleClose, handleOk, title, description }) => {
+const AddMoney = ({ open, handleClose, handleOk, setValue }) => {
   return (
     <BootstrapDialog
       onClose={handleClose}
@@ -19,13 +20,16 @@ const ConfirmDelete = ({ open, handleClose, handleOk, title, description }) => {
       open={open}
     >
       <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-        {title || "Hộp thoại xóa"}
+        {"Nạp tiền"}
       </BootstrapDialogTitle>
       <DialogContent dividers>
-        <Typography gutterBottom>
-          {description ||
-            "  Bạn có chắc chắn muốn xóa không ? Dữ liệu sẽ không khôi phục được!"}
-        </Typography>
+        <TextField
+          fullWidth
+          variant="filled"
+          sx={{ width: 300 }}
+          type={"number"}
+          onChange={(e) => setValue(e.target.value)}
+        />
       </DialogContent>
       <DialogActions>
         <Button variant="contained" color="error" onClick={handleOk}>
@@ -72,4 +76,4 @@ function BootstrapDialogTitle(props) {
   );
 }
 
-export default ConfirmDelete;
+export default AddMoney;
