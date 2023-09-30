@@ -9,6 +9,7 @@ import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { useCookies } from "react-cookie";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
+import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -136,6 +137,14 @@ const Sidebar = () => {
               title="Quản lý môn học"
               to="/subject"
               icon={<ReceiptOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Lịch học"
+              to="/schedules"
+              icon={<CalendarMonthOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

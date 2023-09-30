@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Sidebar from "./scenes/global/Sidebar";
 import CreateUser from "./scenes/users/create-user";
@@ -9,10 +8,10 @@ import { useCookies } from "react-cookie";
 import Users from "./scenes/users";
 import ChangeInfo from "./scenes/users/change-info";
 import Subject from "./scenes/subject";
+import Schedules from "./scenes/schedules";
 
 function App() {
   const [theme, colorMode] = useMode();
-  const [isSidebar, setIsSidebar] = useState(true);
   const [cookies, setCookie] = useCookies(["admin"]);
 
   return (
@@ -25,13 +24,14 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <div className="app">
-            <Sidebar isSidebar={isSidebar} />
+            <Sidebar />
             <main className="content">
               <Routes>
                 <Route index path="/" element={<Users />} />
                 <Route index path="/users/:id" element={<ChangeInfo />} />
                 <Route path="/create-user" element={<CreateUser />} />
                 <Route path="/subject" element={<Subject />} />
+                <Route path="/schedules" element={<Schedules />} />
               </Routes>
             </main>
           </div>
