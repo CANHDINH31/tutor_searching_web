@@ -16,6 +16,10 @@ export const block = async (id) => {
   return await request.patch("api/users/block/" + id);
 };
 
+export const statis = async () => {
+  return await request.get("api/users/statis");
+};
+
 export const getInfoUser = async (id) => {
   return await request.get("api/users/" + id);
 };

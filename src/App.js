@@ -9,6 +9,7 @@ import Users from "./scenes/users";
 import ChangeInfo from "./scenes/users/change-info";
 import Subject from "./scenes/subject";
 import Schedules from "./scenes/schedules";
+import Dashboard from "./scenes/dashboard";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -27,8 +28,9 @@ function App() {
             <Sidebar />
             <main className="content">
               <Routes>
-                <Route index path="/" element={<Users />} />
-                <Route index path="/users/:id" element={<ChangeInfo />} />
+                <Route index path="/" element={<Dashboard />} />
+                <Route path="/users" element={<Users />} />
+                <Route path="/users/:id" element={<ChangeInfo />} />
                 <Route path="/create-user" element={<CreateUser />} />
                 <Route path="/subject" element={<Subject />} />
                 <Route path="/schedules" element={<Schedules />} />
