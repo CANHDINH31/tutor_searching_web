@@ -12,6 +12,10 @@ export const cash = async (payload) => {
   return await request.patch("api/users/cash", payload);
 };
 
+export const block = async (id) => {
+  return await request.patch("api/users/block/" + id);
+};
+
 export const getInfoUser = async (id) => {
   return await request.get("api/users/" + id);
 };

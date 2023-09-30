@@ -1,13 +1,21 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Chip } from "@mui/material";
 export const userColumns = (
-  setArrayId,
-  setOpen,
   setId,
   setOpenCash,
-  navigate
+  navigate,
+  hanldeToggleBlock
 ) => {
   return [
-    { field: "index", headerName: "STT", width: 50 },
+    {
+      field: "index",
+      headerName: "STT",
+      width: 50,
+    },
+    {
+      field: "name",
+      headerName: "Name",
+      width: 120,
+    },
     {
       field: "username",
       headerName: "Username",
@@ -23,6 +31,7 @@ export const userColumns = (
       headerName: "Ngày sinh",
       width: 80,
     },
+
     {
       field: "gender",
       headerName: "Giới tính",
@@ -47,6 +56,18 @@ export const userColumns = (
       width: 80,
     },
     {
+      field: "is_block",
+      headerName: "Trạng thái",
+      width: 80,
+      renderCell: (row) => {
+        return (
+          row?.row?.is_block && (
+            <Chip label={"Block"} color="error" size="small" />
+          )
+        );
+      },
+    },
+    {
       field: "role",
       headerName: "Vai trò",
       renderCell: (row) => {
@@ -61,7 +82,6 @@ export const userColumns = (
         );
       },
     },
-
     {
       field: "accessLevel",
       headerName: "Hành động",
@@ -89,15 +109,14 @@ export const userColumns = (
               Nạp tiền
             </Button>
             <Button
-              color="error"
+              color={row?.row?.is_block ? "secondary" : "error"}
               variant="contained"
               size="small"
-              onClick={() => {
-                setArrayId([row?.row?.id]);
-                setOpen(true);
-              }}
+              onClick={() =>
+                hanldeToggleBlock(row?.row?._id, row?.row?.is_block ? 1 : 2)
+              }
             >
-              Xóa
+              {row?.row?.is_block ? "Mở khóa" : "Khóa"}
             </Button>
           </Box>
         );
