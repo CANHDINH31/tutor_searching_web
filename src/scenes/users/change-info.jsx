@@ -10,10 +10,10 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/layout/Header";
-import { register } from "../../libs/api/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { getInfoUser } from "../../libs/api/user";
+import { changeInfo, getInfoUser } from "../../libs/api/user";
+import { toast } from "react-toastify";
 
 const ChangeInfo = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -28,10 +28,12 @@ const ChangeInfo = () => {
   });
 
   const handleFormSubmit = async (values) => {
-    await register({
+    await changeInfo({
+      _id: id,
       ...values,
       gender: Number(values.gender),
     });
+    toast.success("Cập nhật thông tin thành công");
     navigate("/");
   };
 
@@ -52,6 +54,7 @@ const ChangeInfo = () => {
       <Header title="UPDATE USER" subtitle="Update Info User" />
 
       <Formik
+        enableReinitialize={true}
         onSubmit={handleFormSubmit}
         initialValues={initialValues}
         validationSchema={checkoutSchema}
@@ -134,7 +137,7 @@ const ChangeInfo = () => {
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
-                Update User
+                Cập nhật User
               </Button>
             </Box>
           </form>

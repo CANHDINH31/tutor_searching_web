@@ -21,18 +21,14 @@ const Users = () => {
 
   const handleCashMoney = async () => {
     try {
-      await cash({ _id: id, money: Number(value) });
-      setOpenCash(false);
-      setId(null);
-      setValue(null);
-      toast.success("Nạp tiền thành công");
-      const res = await getAllUser();
-      const arrayData = res?.data?.map((e, index) => ({
-        id: e._id,
-        index: index + 1,
-        ...e,
-      }));
-      setData(arrayData);
+      if (value) {
+        await cash({ _id: id, money: Number(value) });
+        setOpenCash(false);
+        setId(null);
+        setValue(null);
+        toast.success("Nạp tiền thành công");
+        fetchData();
+      }
     } catch (error) {
       throw error;
     }
@@ -47,27 +43,23 @@ const Users = () => {
         toast.success("Khóa tài khoản thành công");
       }
 
-      const res = await getAllUser();
-      const arrayData = res?.data?.map((e, index) => ({
-        id: e._id,
-        index: index + 1,
-        ...e,
-      }));
-      setData(arrayData);
+      fetchData();
     } catch (error) {
       throw error;
     }
   };
+
+  const fetchData = async () => {
+    const res = await getAllUser();
+    const arrayData = res?.data?.map((e, index) => ({
+      id: e._id,
+      index: index + 1,
+      ...e,
+    }));
+    setData(arrayData);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await getAllUser();
-      const arrayData = res?.data?.map((e, index) => ({
-        id: e._id,
-        index: index + 1,
-        ...e,
-      }));
-      setData(arrayData);
-    };
     fetchData();
   }, []);
 

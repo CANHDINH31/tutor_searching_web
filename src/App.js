@@ -2,14 +2,13 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Sidebar from "./scenes/global/Sidebar";
 import CreateUser from "./scenes/users/create-user";
-import FAQ from "./scenes/faq";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
-import Calendar from "./scenes/calendar/calendar";
 import Login from "./scenes/login/login";
 import { useCookies } from "react-cookie";
 import Users from "./scenes/users";
 import ChangeInfo from "./scenes/users/change-info";
+import Subject from "./scenes/subject";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -32,8 +31,7 @@ function App() {
                 <Route index path="/" element={<Users />} />
                 <Route index path="/users/:id" element={<ChangeInfo />} />
                 <Route path="/create-user" element={<CreateUser />} />
-                <Route path="/faq" element={<FAQ />} />
-                <Route path="/calendar" element={<Calendar />} />
+                <Route path="/subject" element={<Subject />} />
               </Routes>
             </main>
           </div>

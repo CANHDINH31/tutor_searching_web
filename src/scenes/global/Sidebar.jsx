@@ -6,9 +6,9 @@ import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
-import EventNoteOutlinedIcon from "@mui/icons-material/EventNoteOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { useCookies } from "react-cookie";
+import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -133,12 +133,13 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Thời gian biểu"
-              to="/calendar"
-              icon={<EventNoteOutlinedIcon />}
+              title="Quản lý môn học"
+              to="/subject"
+              icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
+
             <div onClick={logout}>
               <Item
                 title="Đăng xuất"

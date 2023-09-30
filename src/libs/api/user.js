@@ -19,3 +19,7 @@ export const block = async (id) => {
 export const getInfoUser = async (id) => {
   return await request.get("api/users/" + id);
 };
+
+export const changeInfo = async (payload) => {
+  return await request.patch("api/users/change-info", payload);
+};
