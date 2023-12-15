@@ -34,7 +34,7 @@ const ChangeInfo = () => {
       gender: Number(values.gender),
     });
     toast.success("Cập nhật thông tin thành công");
-    navigate("/");
+    navigate("/users");
   };
 
   useEffect(() => {

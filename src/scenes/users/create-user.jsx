@@ -23,7 +23,7 @@ const CreateUser = () => {
       role: Number(values.role),
       gender: Number(values.gender),
     });
-    navigate("/");
+    navigate("/users");
   };
 
   return (

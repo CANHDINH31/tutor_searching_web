@@ -9,7 +9,7 @@ export const deleteUser = async (payload) => {
 };
 
 export const cash = async (payload) => {
-  return await request.patch("api/users/cash", payload);
+  return await request.patch("api/users/cash-by-admin", payload);
 };
 
 export const block = async (id) => {
@@ -25,5 +25,5 @@ export const getInfoUser = async (id) => {
 };
 
 export const changeInfo = async (payload) => {
-  return await request.patch("api/users/change-info", payload);
+  return await request.patch("api/users/change-info-by-admin", payload);
 };

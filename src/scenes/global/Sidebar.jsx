@@ -11,6 +11,7 @@ import { useCookies } from "react-cookie";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import { clearToken } from "../../libs/utils/jwt";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -41,6 +42,7 @@ const Sidebar = () => {
 
   const logout = () => {
     setCookie("admin", {});
+    clearToken();
     navigate("/");
   };
 

@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useCookies } from "react-cookie";
 import { login } from "../../libs/api";
 import { toast } from "react-toastify";
+import { setToken } from "../../libs/utils/jwt";
 
 const theme = createTheme();
 
@@ -30,6 +31,7 @@ export default function Login() {
 
       if (data?.role === 3) {
         toast.success("Đăng nhập thành công");
+        setToken(data.accessToken);
         setCookie("admin", data);
       } else {
         toast.warn("Bạn không phải là admin");
